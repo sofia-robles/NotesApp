@@ -8,7 +8,7 @@ struct ContentView: View {
         NavigationStack {
             ZStack {
                 
-                //customization 1: gradient background
+                
                 LinearGradient(
                     gradient: Gradient(colors: [.blue.opacity(0.3), .purple.opacity(0.3)]),
                     startPoint: .topLeading,

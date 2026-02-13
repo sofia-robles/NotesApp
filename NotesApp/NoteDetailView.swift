@@ -10,10 +10,15 @@ struct NoteDetailView: View {
         VStack(alignment: .leading, spacing: 20) {
             
             Text(note.title)
-                .font(.largeTitle)
+                .font(.system(size: 32, weight: .bold, design: .rounded))
+                .kerning(1.2)
+                .foregroundColor(note.isCompleted ? .gray : .primary)
                 .strikethrough(note.isCompleted)
-            
+
             Text(note.content)
+                .font(.system(size: 18))
+                .foregroundColor(.secondary)
+                .lineSpacing(6)
                 .padding(.horizontal)
             
             Spacer()
@@ -27,14 +32,23 @@ struct NoteDetailView: View {
                     .background(note.isCompleted ? Color.orange : Color.green)
                     .foregroundColor(.white)
                     .cornerRadius(12)
-                    .shadow(radius: 5)  //customization 2
-            }
-            
-            Spacer()
+                    .shadow(radius: 5)              }
             
         }
         .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
         .navigationTitle("Details")
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color.blue.opacity(0.15),
+                    Color.purple.opacity(0.15)
+                ]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+        )
         .toolbar {
             NavigationLink(destination: AddEditNoteView(note: note, viewModel: viewModel)) {
                 Text("Edit")
