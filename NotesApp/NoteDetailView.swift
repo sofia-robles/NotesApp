@@ -7,15 +7,16 @@ struct NoteDetailView: View {
     @ObservedObject var viewModel: NotesViewModel
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(alignment: .leading, spacing: 20) {
             
             Text(note.title)
                 .font(.largeTitle)
                 .strikethrough(note.isCompleted)
             
             Text(note.content)
-                .padding()
-                .strikethrough(note.isCompleted)
+                .padding(.horizontal)
+            
+            Spacer()
             
             Button(action: {
                 viewModel.toggleCompletion(for: note)
